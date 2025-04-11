@@ -2,12 +2,15 @@ from mcp.server.fastmcp import FastMCP
 import requests
 
 # create a fastmcp server
-mcp = FastMCP("transaction_mcp_demo")
+mcp = FastMCP("Demo")
 
 # Tool #1: call GET /transaction api endpoint
 @mcp.tool()
 def get_transaction() -> dict:
     '''This provides the most recent credit card transaction of the user
+    
+    Args:
+        None
     
     Returns:
         dict: A single transaction record
@@ -20,6 +23,9 @@ def get_transaction() -> dict:
 def get_transactions() -> list:
     '''This provides all the credit card transactions of the user
     
+    Args:
+        None
+    
     Returns:
         list: List of transaction records
     '''
@@ -27,5 +33,9 @@ def get_transactions() -> list:
     transactions = response.json()
     return transactions
 
+# Add print statement outside the if block to see if the file is being loaded
+print("MCP server file loaded")
+
 if __name__ == "__main__":
+    print("Starting MCP server...")
     mcp.run()
